@@ -2,7 +2,6 @@
 
 namespace ArnaudLier\DuolingoPHP;
 
-use DateTime;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\RequestOptions;
 
@@ -48,16 +47,11 @@ class Client
     }
 
     /**
-     * @param DateTime|null $before
-     * @return string
+     * @return Leaderboard
      * @throws GuzzleException
      */
-    public function getLeaderboard(?DateTime $before = null): string
+    public function getLeaderboard(): Leaderboard
     {
-        if (!$before) {
-            $before = new DateTime();
-        }
-
         $id = $this->getUser()->id;
 
         $response = $this->client->get(
@@ -69,7 +63,7 @@ class Client
                 ]
             ]);
 
-        return json_decode($response->getBody(), true);
+        return new Leaderboard(json_decode($response->getBody(), true));
     }
 
     /**
@@ -102,9 +96,10 @@ class Client
     }
 
     /**
+     * @return Vocabulary|null null if not logged in
      * @throws GuzzleException
      */
-    public function getDictionary(): array
+    public function getVocabulary(): ?Vocabulary
     {
         $response = $this->client->get('https://www.duolingo.com/vocabulary/overview', [
             RequestOptions::HEADERS => [
@@ -113,7 +108,7 @@ class Client
             ]
         ]);
 
-        return json_decode($response->getBody(), true);
+        return new Vocabulary(json_decode($response->getBody(), true));
     }
 
     /**

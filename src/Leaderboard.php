@@ -2,18 +2,13 @@
 
 namespace ArnaudLier\DuolingoPHP;
 
-class User
+class Leaderboard
 {
-    public ?int $id;
-    public ?int $totalXp;
-    public ?int $xpGoal;
-    public ?int $streak;
-
-    public ?string $name;
-    public ?string $username;
-
-    public ?bool $xpGoalMetToday;
-    public ?bool $hasPlus;
+    public ?int $num_wins;
+    public ?array $stats;
+    public ?int $streak_in_tier;
+    public ?int $tier;
+    public ?int $top_three_finishes;
 
     public function __construct(array $data)
     {

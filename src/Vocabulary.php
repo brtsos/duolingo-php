@@ -2,18 +2,13 @@
 
 namespace ArnaudLier\DuolingoPHP;
 
-class User
+class Vocabulary
 {
-    public ?int $id;
-    public ?int $totalXp;
-    public ?int $xpGoal;
-    public ?int $streak;
-
-    public ?string $name;
-    public ?string $username;
-
-    public ?bool $xpGoalMetToday;
-    public ?bool $hasPlus;
+    public ?string $language_string;
+    public ?string $language_language;
+    public ?string $from_language;
+    public ?array $language_information;
+    public ?array $vocab_overview;
 
     public function __construct(array $data)
     {
