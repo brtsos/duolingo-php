@@ -11,7 +11,7 @@ class User
 
     public ?string $name;
     public ?string $username;
-
+    public ?string $picture;
     public ?bool $xpGoalMetToday;
     public ?bool $hasPlus;
 
